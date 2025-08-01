@@ -141,7 +141,15 @@ const Footer: React.FC = () => {
         >
           <div className="text-sm text-gray-400 mb-4 md:mb-0">
             <p>
-              Implementation follows the draft BIP specification.{' '}
+              Implementation follows the{' '}
+              <a 
+                href="https://github.com/utreexo/biptreexo" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-bitcoin-400 hover:text-bitcoin-300 underline underline-offset-2 transition-colors"
+              >
+                draft BIP specification
+              </a>.{' '}
               <span className="text-bitcoin-500">Open source</span>{' '}
               under BSD-3-Clause license.
             </p>

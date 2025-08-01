@@ -31,7 +31,15 @@ const Hero: React.FC = () => {
             
             <p className="text-xl sm:text-2xl text-gray-400 max-w-4xl mx-auto mb-8 leading-relaxed">
               A dynamic hash-based accumulator for Bitcoin's UTXO set, providing compact representation 
-              with logarithmic-sized inclusion proofs. Based on the draft BIP specification.
+              with logarithmic-sized inclusion proofs. Based on the{' '}
+              <a 
+                href="https://github.com/utreexo/biptreexo" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-bitcoin-400 hover:text-bitcoin-300 underline underline-offset-2 transition-colors"
+              >
+                draft BIP specification
+              </a>.
             </p>
           </motion.div>
 
