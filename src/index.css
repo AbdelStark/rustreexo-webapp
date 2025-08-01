@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bitcoin-50: #fff7ed;
+  --color-bitcoin-100: #ffedd5;
+  --color-bitcoin-200: #fed7aa;
+  --color-bitcoin-300: #fdba74;
+  --color-bitcoin-400: #fb923c;
+  --color-bitcoin-500: #f97316;
+  --color-bitcoin-600: #ea580c;
+  --color-bitcoin-700: #c2410c;
+  --color-bitcoin-800: #9a3412;
+  --color-bitcoin-900: #7c2d12;
+}
+
+@layer base {
+  * {
+    border-color: #374151;
+  }
+  
+  body {
+    @apply bg-slate-900 text-gray-100 font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-gray-50;
+  }
+}
+
+/* Custom component styles using standard CSS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-bitcoin-500);
+  color: white;
+  box-shadow: 0 10px 15px -3px rgb(249 115 22 / 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-bitcoin-600);
+}
+
+.btn-secondary {
+  background-color: rgb(51 65 85);
+  color: rgb(243 244 246);
+  border: 1px solid rgb(71 85 105);
+}
+
+.btn-secondary:hover {
+  background-color: rgb(71 85 105);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-bitcoin-500);
+  color: var(--color-bitcoin-400);
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-bitcoin-500);
+  color: white;
+}
+
+.card {
+  background-color: rgb(30 41 59);
+  border: 1px solid rgb(51 65 85);
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.2);
+  padding: 1.5rem;
+}
+
+.code-block {
+  background-color: rgb(15 23 42);
+  border: 1px solid rgb(51 65 85);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  color: rgb(209 213 219);
+  overflow-x: auto;
+}
+
+.hash-display {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  color: var(--color-bitcoin-400);
+  background-color: rgb(15 23 42);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgb(51 65 85);
+  word-break: break-all;
+}
+
+.tree-node {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-bitcoin-500);
+  background-color: rgb(249 115 22 / 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  transition: all 0.2s;
+}
+
+.tree-node:hover {
+  background-color: rgb(249 115 22 / 0.2);
+  transform: scale(1.1);
+}
+
+.tree-edge {
+  stroke: var(--color-bitcoin-400);
+  stroke-width: 2;
+  opacity: 0.7;
+}
+
+.gradient-bg {
+  background: linear-gradient(to bottom right, rgb(15 23 42), rgb(30 41 59), rgb(15 23 42));
+}
+
+.glass-effect {
+  backdrop-filter: blur(4px);
+  background-color: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.1);
+}

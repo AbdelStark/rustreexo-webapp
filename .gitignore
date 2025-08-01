@@ -1,0 +1,9 @@
+**/node_modules
+**/dist
+**/build
+**/target
+**/wasm-pack-cache
+**/wasm-pack-cache-wasm
+**/wasm-pack-cache-wasm-pack-cache
+**/wasm-pack-cache-wasm-pack-cache-wasm-pack-cache
+**/wasm-pack-cache-wasm-pack-cache-wasm-pack-cache-wasm-pack-cache
