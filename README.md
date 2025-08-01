@@ -115,11 +115,6 @@ The project uses WebAssembly modules that require:
 - **[MIT DCI Utreexo](https://github.com/mit-dci/rustreexo/tree/main)**: Rust reference implementation
 - **[rustreexo-wasm](https://github.com/AbdelStark/rustreexo-wasm)**: WebAssembly bindings for web applications
 
-### Key Papers & Resources
-- [Utreexo: A dynamic hash-based accumulator optimized for the Bitcoin UTXO set](https://eprint.iacr.org/2019/611.pdf)
-- [Bitcoin Improvement Proposal discussions](https://github.com/bitcoin/bips/discussions)
-- [Scaling Bitcoin with Utreexo](https://bitcoinops.org/en/topics/utreexo/)
-
 ## 🎯 Project Structure
 
 ```
@@ -187,13 +182,6 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Thaddeus Dryja** for the original Utreexo research
-- **MIT DCI** for the Rust reference implementation
-- **StarkWare Bitcoin** for supporting this educational project
-- **Bitcoin community** for ongoing research and development
 
 ## 🐛 Issues & Support
 
