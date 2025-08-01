@@ -25,6 +25,37 @@ const isValidHash = (hash: string): boolean => {
   return /^[a-fA-F0-9]{64}$/.test(hash);
 };
 
+// Calculate forest structure from leaf count
+const getForestStructure = (leafCount: number): { treeCount: number; treeSizes: number[]; explanation: string } => {
+  if (leafCount === 0) {
+    return { treeCount: 0, treeSizes: [], explanation: 'Empty forest' };
+  }
+  
+  const treeSizes: number[] = [];
+  let remaining = leafCount;
+  let power = 0;
+  
+  // Calculate tree sizes based on binary representation
+  while (remaining > 0) {
+    if (remaining & 1) {
+      treeSizes.push(Math.pow(2, power));
+    }
+    remaining >>= 1;
+    power++;
+  }
+  
+  treeSizes.reverse(); // Show largest trees first
+  
+  let explanation = '';
+  if (treeSizes.length === 1) {
+    explanation = `Perfect binary tree with ${treeSizes[0]} leaves`;
+  } else {
+    explanation = `Forest of ${treeSizes.length} trees: ${treeSizes.join(' + ')} leaves`;
+  }
+  
+  return { treeCount: treeSizes.length, treeSizes, explanation };
+};
+
 const AccumulatorDemo: React.FC<AccumulatorDemoProps> = ({ activeTab }) => {
   const [stumpState, setStumpState] = useState<AccumulatorState>({
     leaves: 0,
@@ -478,25 +509,61 @@ const AccumulatorDemo: React.FC<AccumulatorDemoProps> = ({ activeTab }) => {
               <div className="text-2xl font-mono text-bitcoin-400">{currentState.leaves}</div>
             </div>
             <div className="p-4 bg-slate-700 rounded-lg">
-              <div className="text-sm text-gray-400 mb-1">Root Count</div>
+              <div className="text-sm text-gray-400 mb-1">Forest Trees</div>
               <div className="text-2xl font-mono text-bitcoin-400">{currentState.roots.length}</div>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <div className="text-sm text-gray-400 mb-2">Root Hashes</div>
-            <div className="max-h-32 overflow-y-auto space-y-1">
-              {currentState.roots.length > 0 ? (
-                currentState.roots.map((root, index) => (
-                  <div key={index} className="hash-display group cursor-pointer" onClick={() => copyToClipboard(root)}>
-                    <div className="flex items-center justify-between">
-                      <span className="truncate">{root}</span>
-                      <Copy className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="space-y-3">
+            <div>
+              <div className="text-sm text-gray-400 mb-1">Forest Roots</div>
+              <div className="text-xs text-gray-500 mb-3">
+                Utreexo maintains a forest of perfect binary trees. Each root represents one tree in the forest.
+              </div>
+            </div>
+            
+            {/* Forest Structure Explanation */}
+            {currentState.leaves > 0 && (() => {
+              const forestInfo = getForestStructure(currentState.leaves);
+              return (
+                <div className="text-xs bg-slate-800 rounded-lg p-3 border border-slate-600">
+                  <div className="text-gray-300 font-medium mb-1">Forest Structure</div>
+                  <div className="text-gray-400">{forestInfo.explanation}</div>
+                  {forestInfo.treeSizes.length > 1 && (
+                    <div className="text-gray-500 mt-1">
+                      Binary: {currentState.leaves.toString(2)} → {forestInfo.treeSizes.length} trees
                     </div>
-                  </div>
-                ))
+                  )}
+                </div>
+              );
+            })()}
+            
+            <div className="max-h-32 overflow-y-auto space-y-2">
+              {currentState.roots.length > 0 ? (
+                currentState.roots.map((root, index) => {
+                  const forestInfo = getForestStructure(currentState.leaves);
+                  const treeSize = forestInfo.treeSizes[index] || '?';
+                  return (
+                    <div key={index} className="bg-slate-800 rounded-lg p-3">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs text-gray-400">
+                          Tree {index + 1} ({treeSize} leaves)
+                        </span>
+                        <Copy 
+                          className="w-3 h-3 text-gray-500 hover:text-gray-300 cursor-pointer transition-colors" 
+                          onClick={() => copyToClipboard(root)}
+                        />
+                      </div>
+                      <div className="text-xs font-mono text-gray-300 truncate" title={root}>
+                        {root}
+                      </div>
+                    </div>
+                  );
+                })
               ) : (
-                <div className="text-gray-500 text-sm italic">No roots (empty accumulator)</div>
+                <div className="text-gray-500 text-sm italic bg-slate-800 rounded-lg p-3">
+                  Empty forest (no trees)
+                </div>
               )}
             </div>
           </div>

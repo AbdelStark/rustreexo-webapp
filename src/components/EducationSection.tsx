@@ -7,14 +7,14 @@ const EducationSection: React.FC = () => {
     {
       icon: <TreePine className="w-6 h-6" />,
       title: "Merkle Forest",
-      description: "A set of perfect binary trees with 2ⁿ elements, where N elements require approximately log₂(N)/2 trees on average",
-      details: "The number and sizes of trees are determined by the binary representation of N: each 1-bit corresponds to a tree."
+      description: "A forest of perfect binary trees, each with 2ⁿ elements. Multiple roots represent different trees in the forest.",
+      details: "The number of trees is determined by the binary representation of total elements: each 1-bit corresponds to a tree. Example: 5 elements = trees of size 4+1 = 2 roots."
     },
     {
       icon: <Hash className="w-6 h-6" />,
-      title: "Accumulator State",
-      description: "Consists of root hashes and a leaf count, representing the current UTXO set state",
-      details: "The accumulator state requires O(log₂(N)) storage where N is the number of elements ever added to the set."
+      title: "Forest Roots",
+      description: "Each root hash represents one perfect binary tree in the forest. Multiple roots are normal and expected.",
+      details: "The number of roots depends on the total elements: 1→1 root, 2→1 root, 3→2 roots, 4→1 root, 5→2 roots, etc."
     },
     {
       icon: <Shield className="w-6 h-6" />,
